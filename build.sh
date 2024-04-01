@@ -32,8 +32,10 @@ EOF
 			log "End ${SUB_STAGE_DIR}/${i}-packages-nr"
 		fi
 		if [ -f "${i}-packages" ]; then
+			log "jeff: Begin ${SUB_STAGE_DIR}/${i}-packages"
 			log "Begin ${SUB_STAGE_DIR}/${i}-packages"
 			PACKAGES="$(sed -f "${SCRIPT_DIR}/remove-comments.sed" < "${i}-packages")"
+			log "jeff: PACKAGES: $PACKAGES"
 			if [ -n "$PACKAGES" ]; then
 				on_chroot << EOF
 apt-get -o Acquire::Retries=3 install -y $PACKAGES
