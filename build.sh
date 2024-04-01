@@ -30,6 +30,7 @@ EOF
 			log "Begin ${SUB_STAGE_DIR}/${i}-packages"
 			PACKAGES="$(sed -f "${SCRIPT_DIR}/remove-comments.sed" < "${i}-packages")"
 			if [ -n "$PACKAGES" ]; then
+				printf "WHORE Installing packages: %s\n" "$PACKAGES"
 				on_chroot << EOF
 apt-get -o Acquire::Retries=3 install -y $PACKAGES
 EOF
